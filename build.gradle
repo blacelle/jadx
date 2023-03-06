@@ -1,6 +1,6 @@
 plugins {
 	id 'com.github.ben-manes.versions' version '0.45.0'
-	id 'com.diffplug.spotless' version '6.13.0'
+	id 'com.diffplug.spotless' version '6.16.0'
 }
 
 ext.jadxVersion = System.getenv('JADX_VERSION') ?: "dev"
@@ -64,7 +64,9 @@ spotless {
 			include 'jadx-core/src/**/java/**/*.java'
 			include 'jadx-gui/src/**/java/**/*.java'
 			include 'jadx-plugins/**/java/**/*.java'
+			exclude 'jadx-core/src/test/java/jadx/tests/integration/**/*.java'
 		}
+		cleanthat().version('2.9').sourceCompatibility(JavaVersion.VERSION_1_8.toString())
 
 		importOrderFile 'config/code-formatter/eclipse.importorder'
 		eclipse().configFile 'config/code-formatter/eclipse.xml'
